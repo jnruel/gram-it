@@ -1,5 +1,5 @@
 <script>
-  export let ingredients;
+  import { filteredIngredientsStore } from './stores.js';
 </script>
 
 <div>
@@ -10,11 +10,11 @@
       <th>Volume</th>
       <th>Weight (Grams)</th>
     </tr>
-    {#each ingredients as item}
+    {#each $filteredIngredientsStore as ingredient}
       <tr>
-        <td>{item.Ingredient}</td>
-        <td>{item.Volume}</td>
-        <td>{item.Grams}</td>
+        <td>{ingredient.Ingredient}</td>
+        <td>{ingredient.Volume}</td>
+        <td>{ingredient.Grams}</td>
       </tr>
     {/each}
   </table>

@@ -1,25 +1,30 @@
-import { writable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
 
-const createWritableStore = (key, startValue) => {
-  const { subscribe, set } = writable(startValue);
+/**
+ * Initialize empty ingredients store, to be set
+ * when App.svelte is mounted with data from ingredients.js
+ */
+export const ingredientsStore = writable([]);
 
-	return {
-    subscribe,
-    set,
-    useLocalStorage: () => {
-      const json = localStorage.getItem(key);
+/**
+ * Initialize empty search term store, to be bound
+ * to the value of the text input field
+ */
+export const searchTermStore = writable('');
 
-      if (json) {
-        set(JSON.parse(json));
-      }
+/**
+ * Derived from ingredients store, filtered when search term
+ * store is updated
+ */
+export const filteredIngredientsStore = derived(
+  [ingredientsStore, searchTermStore], ([$ingredientsStore, $searchTermStore]) => {
+  return filterBySearchTerm($ingredientsStore, $searchTermStore);
+});
 
-      subscribe(current => {
-        localStorage.setItem(key, JSON.stringify(current));
-      });
-    }
-  }
-};
-
-// export const ingredients = createWritableStore('ingredients', []);
+function filterBySearchTerm(ingredients, searchTermStore) {
+  return ingredients.filter(ing => {
+    return ing.Ingredient.toLowerCase().includes(searchTermStore.toLowerCase());
+  });
+}
 
 
