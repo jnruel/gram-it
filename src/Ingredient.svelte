@@ -21,7 +21,7 @@
   <td>{ingredient.volume}</td>
   <td>{ingredient.grams}</td>
   {#if inRecipe === true}
-    <td><button on:click={saveToRecipe}>Scale</button></td>
+    <td><button on:click={saveToRecipe}>Edit Amount</button></td>
     <td><button on:click={removeFromRecipe}>Remove</button></td>
   {:else}
     <td><button on:click={saveToRecipe}>Save</button></td>

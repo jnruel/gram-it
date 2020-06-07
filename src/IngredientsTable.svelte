@@ -1,10 +1,19 @@
 <script>
   import { filteredIngredientsStore } from './stores.js';
   import Ingredient from './Ingredient.svelte';
+  import IngredientsFilter from './IngredientsFilter.svelte';
 </script>
 
-<div>
+<style>
+  .ingredients-table {
+    width: 50%;
+    margin-right: 25px;
+  }
+</style>
+
+<div class="ingredients-table">
 	<h2>Ingredients</h2>
+  <IngredientsFilter />
   <table>
     <tr>
       <th>Name</th>

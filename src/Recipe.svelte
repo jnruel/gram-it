@@ -1,8 +1,13 @@
 <script>
   import Ingredient from './Ingredient.svelte';
   import { recipe } from './stores.js';
-
 </script>
+
+<style>
+  .recipe {
+    width: 50%;
+  }
+</style>
 
 <div class="recipe">
 	<h2>Recipe</h2>

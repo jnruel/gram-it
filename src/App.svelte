@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
   import ingredients from './ingredients.js';
   import { ingredientsStore, filteredIngredientsStore } from './stores.js';
-  import IngredientsFilter from './IngredientsFilter.svelte';
   import IngredientsTable from './IngredientsTable.svelte';
   import Recipe from './Recipe.svelte';
 
@@ -17,9 +16,19 @@
   });
 </script>
 
+<style>
+  :global(th) {
+    text-align: left;
+  }
+  .content {
+    display: flex;
+  }
+</style>
+
 <main>
 	<h1>Stuff</h1>
-  <Recipe />
-  <IngredientsFilter />
-	<IngredientsTable />
+  <div class="content">
+    <IngredientsTable />
+    <Recipe />
+  </div>
 </main>
