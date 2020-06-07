@@ -6,7 +6,7 @@ import { writable, derived } from 'svelte/store';
  */
 export const ingredientsStore = writable([]);
 
-export const recipe = writable({});
+export const recipe = writable([]);
 
 // export const recipes = writable([{ id: 0 }]);
 // export const currentRecipeId = 0;
