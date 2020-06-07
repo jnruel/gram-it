@@ -6,6 +6,11 @@ import { writable, derived } from 'svelte/store';
  */
 export const ingredientsStore = writable([]);
 
+export const recipe = writable({});
+
+// export const recipes = writable([{ id: 0 }]);
+// export const currentRecipeId = 0;
+
 /**
  * Initialize empty search term store, to be bound
  * to the value of the text input field
@@ -23,7 +28,7 @@ export const filteredIngredientsStore = derived(
 
 function filterBySearchTerm(ingredients, searchTermStore) {
   return ingredients.filter(ing => {
-    return ing.Ingredient.toLowerCase().includes(searchTermStore.toLowerCase());
+    return ing.name.toLowerCase().includes(searchTermStore.toLowerCase());
   });
 }
 
