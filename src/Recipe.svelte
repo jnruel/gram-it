@@ -1,5 +1,5 @@
 <script>
-  import Ingredient from './Ingredient.svelte';
+  import RecipeIngredient from './RecipeIngredient.svelte';
   import { recipe } from './stores.js';
 </script>
 
@@ -18,7 +18,7 @@
       <th>Weight (Grams)</th>
     </tr>
     {#each $recipe as ingredient}
-      <Ingredient ingredient={ingredient} inRecipe={true} />
+      <RecipeIngredient ingredient={ingredient} />
     {/each}
   </table>
 </div>
