@@ -5,11 +5,7 @@ import { writable, derived } from 'svelte/store';
  * when App.svelte is mounted with data from ingredients.js
  */
 export const ingredientsStore = writable([]);
-
 export const recipe = writable([]);
-
-// export const recipes = writable([{ id: 0 }]);
-// export const currentRecipeId = 0;
 
 /**
  * Initialize empty search term store, to be bound

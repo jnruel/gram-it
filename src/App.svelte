@@ -9,6 +9,8 @@
     // Add unique ID to each ingredient object
     let updatedIngredients = ingredients.map((ing, i) => {
       ing.id = i;
+      ing.inRecipe = false;
+
       return ing;
     });
 

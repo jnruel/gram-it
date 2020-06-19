@@ -1,13 +1,26 @@
 <script>
-  import { recipe } from './stores.js';
+  import { recipe, ingredientsStore } from './stores.js';
   export let ingredient;
   let editing = false;
-
 
   function removeFromRecipe() {
     recipe.update(recipe => {
       return recipe.filter(ing => ing.id !== ingredient.id);
     });
+
+    // Deep copy of ingredient
+    let updatedIngredient = Object.assign({}, ingredient);
+    updatedIngredient.inRecipe = false;
+
+    // Get index of this ingredient in ingredients store
+    let index = $ingredientsStore.map(e => e.id).indexOf(ingredient.id);
+
+    // Deep copy of ingredients store
+    let updatedIngredientsStore = [...$ingredientsStore];
+
+    // Set updated ingredient in store
+    updatedIngredientsStore[index] = updatedIngredient;
+    ingredientsStore.set(updatedIngredientsStore);
   }
 
   function editIngredient() {

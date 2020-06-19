@@ -1,5 +1,5 @@
 <script>
-  import { recipe } from './stores.js';
+  import { recipe, ingredientsStore } from './stores.js';
   export let ingredient;
 
   let editing = false;
@@ -10,7 +10,19 @@
       return [...recipe, ingredient];
     });
 
-    inRecipe = true;
+    // Deep copy of ingredient
+    let updatedIngredient = Object.assign({}, ingredient);
+    updatedIngredient.inRecipe = true;
+
+    // Get index of this ingredient in ingredients store
+    let index = $ingredientsStore.map(e => e.id).indexOf(ingredient.id);
+
+    // Deep copy of ingredients store
+    let updatedIngredientsStore = [...$ingredientsStore];
+
+    // Set updated ingredient in store
+    updatedIngredientsStore[index] = updatedIngredient;
+    ingredientsStore.set(updatedIngredientsStore);
   }
 </script>
 
@@ -18,7 +30,7 @@
   <td>{ingredient.name}</td>
   <td>{ingredient.volume.amount} {ingredient.volume.type}</td>
   <td>{ingredient.grams}</td>
-  {#if !inRecipe}
+  {#if !ingredient.inRecipe}
     <td><button on:click={ addToRecipe }>Add</button></td>
   {/if}
 </tr>
