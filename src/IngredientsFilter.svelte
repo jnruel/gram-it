@@ -6,4 +6,3 @@
   <label for="ingredients-filter">Filter ingredients by name</label>
   <input bind:value={$searchTermStore} id="ingredients-filter" type="text">
 </div>
-
