@@ -15,7 +15,7 @@
     updatedIngredient.inRecipe = true;
 
     // Get index of this ingredient in ingredients store
-    let index = $ingredientsStore.map(e => e.id).indexOf(ingredient.id);
+    const index = $ingredientsStore.map(ing => ing.id).indexOf(ingredient.id);
 
     // Deep copy of ingredients store
     let updatedIngredientsStore = [...$ingredientsStore];
