@@ -28,7 +28,8 @@
 </style>
 
 <main>
-	<h1>Stuff</h1>
+	<h1>Gram-It</h1>
+  <h2>Ingredient volume to weight conversion</h2>
   <div class="content">
     <IngredientsTable />
     <Recipe />
