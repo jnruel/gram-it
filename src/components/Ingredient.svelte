@@ -1,5 +1,5 @@
 <script>
-  import { recipe, ingredientsStore } from './stores.js';
+  import { recipe, ingredientsStore } from '../stores.js';
   export let ingredient;
 
   let editing = false;

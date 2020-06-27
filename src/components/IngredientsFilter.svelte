@@ -1,5 +1,5 @@
 <script>
-  import { searchTermStore } from './stores.js';
+  import { searchTermStore } from '../stores.js';
 </script>
 
 <div class="form-group">

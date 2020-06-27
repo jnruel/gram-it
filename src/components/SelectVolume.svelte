@@ -9,9 +9,9 @@
     'teaspoon'
   ];
 
-  function getValue() {
-    console.log(selectedType);
-  }
+  // function getValue() {
+  //   console.log(selectedType);
+  // }
 
   function handleChange() {
     dispatch('notify', selectedType);

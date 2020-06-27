@@ -1,7 +1,7 @@
 <script>
-  import { recipe, ingredientsStore } from './stores.js';
+  import { recipe, ingredientsStore } from '../stores.js';
+  import volumeConversion from '../volumeConversion.js';
   import SelectVolume from './SelectVolume.svelte';
-  import volumeConversion from './volumeConversion.js';
 
   export let ingredient;
 

@@ -2,8 +2,8 @@
   import { onMount } from 'svelte';
   import ingredients from './ingredients.js';
   import { ingredientsStore, filteredIngredientsStore } from './stores.js';
-  import IngredientsTable from './IngredientsTable.svelte';
-  import Recipe from './Recipe.svelte';
+  import IngredientsTable from './components/IngredientsTable.svelte';
+  import Recipe from './components/Recipe.svelte';
 
   onMount(async () => {
     // Add unique ID to each ingredient object

@@ -1,6 +1,6 @@
 <script>
+  import { recipe } from '../stores.js';
   import RecipeIngredient from './RecipeIngredient.svelte';
-  import { recipe } from './stores.js';
 </script>
 
 <style>

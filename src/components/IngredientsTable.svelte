@@ -1,5 +1,5 @@
 <script>
-  import { filteredIngredientsStore } from './stores.js';
+  import { filteredIngredientsStore } from '../stores.js';
   import Ingredient from './Ingredient.svelte';
   import IngredientsFilter from './IngredientsFilter.svelte';
 </script>
