@@ -7,7 +7,8 @@
 
   let volumeType = ingredient.volume.type;
   let volumeAmount = ingredient.volume.amount;
-
+  let baseVolumeAmount = volumeAmount;
+  let grams = ingredient.grams;
   let editing = false;
 
   /**
@@ -46,19 +47,33 @@
   function save() {
     editing = false;
 
+    // update grams
+    // TODO: only do if volume amount is changed?
+    let gramConversionFactor = volumeAmount / baseVolumeAmount;
+    grams = (ingredient.grams * gramConversionFactor).toFixed(2);
+
+    // Deep copy of edited ingredient:
     let updatedIngredient = Object.assign({}, ingredient);
+
+    // Update values:
     updatedIngredient.volume.amount = volumeAmount;
     updatedIngredient.volume.type = volumeType;
+    updatedIngredient.grams = grams;
 
     // Get index of this ingredient in recipe store
     const index = $recipe.map(ing => ing.id).indexOf(ingredient.id);
 
-    // Deep copy of recipe store
+    // Deep copy of recipe store:
     let updatedRecipe = [...$recipe];
 
+    // Set updated ingredient in new recipe:
     updatedRecipe[index] = updatedIngredient;
 
+    // Update recipe state in store:
     recipe.set(updatedRecipe);
+
+    // Set new base volume amount after making other updates
+    baseVolumeAmount = volumeAmount;
   }
 
   /**
@@ -66,8 +81,15 @@
    */
   function cancel() {
     volumeAmount = ingredient.volume.amount;
+    baseVolumeAmount = volumeAmount;
     volumeType = ingredient.volume.type;
+    grams = ingredient.grams;
     editing = false;
+  }
+
+  // Not sure if this will be needed
+  function handleVolAmountChange() {
+    // baseVolumeAmount = volumeAmount;
   }
 
   /**
@@ -79,9 +101,12 @@
   function handleVolTypeChange(event) {
     volumeType = event.detail;
 
-    const conversionFactor = volumeConversion[volumeType] / volumeConversion[ingredient.volume.type];
+    let currentType = ingredient.volume.type;
+    let newType = volumeType;
 
-    volumeAmount = ingredient.volume.amount * conversionFactor;
+    // Convert volume amount by type
+    const conversionFactor = volumeConversion[volumeType] / volumeConversion[ingredient.volume.type];
+    volumeAmount = volumeAmount * conversionFactor;
   }
 </script>
 
@@ -95,7 +120,13 @@
   <td>{ingredient.name}</td>
   {#if editing}
     <td>
-      <input class="input-volume-amount" type="number" bind:value={volumeAmount}/>
+      <input
+        class="input-volume-amount"
+        min="0"
+        type="number"
+        bind:value={volumeAmount}
+        on:change={handleVolAmountChange}
+      />
       <SelectVolume selectedType={volumeType} on:notify={handleVolTypeChange}/>
     </td>
     <!-- Is there a use-case for allowing gram value to be edited directly? -->
@@ -104,7 +135,7 @@
     <td>{volumeAmount} {volumeType}</td>
   {/if}
 
-  <td>{ingredient.grams}</td>
+  <td>{grams}</td>
 
   {#if !editing}
     <td><button on:click={edit}>Edit</button></td>
