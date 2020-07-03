@@ -3,6 +3,11 @@
 </script>
 
 <div class="form-group">
-  <label for="ingredients-filter">Filter ingredients by name</label>
-  <input bind:value={$searchTermStore} id="ingredients-filter" type="text">
+  <label for="ingredients-filter">Search ingredients</label>
+  <input
+    bind:value={$searchTermStore}
+    id="ingredients-filter"
+    type="text"
+    placeholder="flour"
+  >
 </div>

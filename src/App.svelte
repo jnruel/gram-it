@@ -19,9 +19,6 @@
 </script>
 
 <style>
-  :global(th) {
-    text-align: left;
-  }
   .content {
     display: flex;
   }

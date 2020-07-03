@@ -5,6 +5,14 @@
 </script>
 
 <style>
+  :global(table) {
+    border-collapse: collapse;
+  }
+
+  :global(th) {
+    text-align: left;
+  }
+
   .ingredients-table {
     width: 50%;
     margin-right: 25px;
@@ -16,7 +24,7 @@
   <IngredientsFilter />
   <table>
     <tr>
-      <th>Name</th>
+      <th>Ingredient</th>
       <th>Volume</th>
       <th>Weight (Grams)</th>
     </tr>
