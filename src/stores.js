@@ -1,10 +1,20 @@
-import { writable, derived } from 'svelte/store';
+import { writable, derived, readable } from 'svelte/store';
+import ingredients from './ingredients.js';
 
 /**
  * Initialize empty ingredients store, to be set
  * when App.svelte is mounted with data from ingredients.js
  */
-export const ingredientsStore = writable([]);
+
+let updatedIngredients = ingredients.map((ing, i) => {
+  ing.id = i;
+  ing.inRecipe = false;
+
+  return ing;
+});
+
+export const ingredientsStore = writable(updatedIngredients);
+
 export const recipe = writable([]);
 
 /**
