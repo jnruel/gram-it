@@ -10,15 +10,10 @@
 </style>
 
 <div class="recipe">
-	<h2>Recipe</h2>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Volume</th>
-      <th>Weight (Grams)</th>
-    </tr>
+	<h2>Saved Ingredients</h2>
+  <div class="recipe-ingredients">
     {#each $recipe as ingredient}
       <RecipeIngredient ingredient={ingredient} />
     {/each}
-  </table>
+  </div>
 </div>

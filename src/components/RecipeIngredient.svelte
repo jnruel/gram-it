@@ -92,37 +92,59 @@
 </script>
 
 <style>
+  .recipe-ingredient {
+    margin-bottom: 10px;
+  }
+
   .input-volume-amount {
     width: 65px;
   }
+
+  .name {
+    font-weight: bold;
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+  }
+
+  .amount {
+    margin-right: 10px;
+  }
+
+  .actions button {
+    margin: 0;
+
+  }
 </style>
 
-<tr>
-  <td>{ingredient.name}</td>
-  {#if editing}
-    <td>
+<div class="recipe-ingredient">
+  <div class="name">{ingredient.name}</div>
+  <div class="info">
+    {#if !editing}
+      <div class="amount">
+        <span>{thisIngredient.grams} grams</span>
+        <span>({thisIngredient.volume.amount} {thisIngredient.volume.type})</span>
+      </div>
+      <div class="actions">
+        <button type="button" on:click={edit}>Edit</button>
+        <button on:click={remove}>Remove</button>
+      </div>
+    {:else}
       <input
         class="input-volume-amount"
         min="0"
         type="number"
+        step="0.01"
         bind:value={tempVolumeAmount}
         on:change={handleVolAmountChange}
       />
       <SelectVolume selectedType={thisIngredient.volume.type} on:notify={handleVolTypeChange}/>
-    </td>
-    <!-- Is there a use-case for allowing gram value to be edited directly? -->
-    <!-- <td><input type="number" value={ingredient.grams}/></td> -->
-  {:else}
-    <td>{thisIngredient.volume.amount} {thisIngredient.volume.type}</td>
-  {/if}
-
-  <td>{thisIngredient.grams}</td>
-
-  {#if !editing}
-    <td><button on:click={edit}>Edit</button></td>
-    <td><button on:click={remove}>Remove</button></td>
-  {:else}
-    <td><button on:click={save}>Save</button></td>
-    <td><button on:click={cancel}>Cancel</button></td>
-  {/if}
-</tr>
+      <div class="actions">
+        <button on:click={save}>Save</button>
+        <button on:click={cancel}>Cancel</button>
+      </div>
+    {/if}
+  </div>
+</div>
